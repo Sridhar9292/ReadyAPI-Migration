@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project 
+    id="12345678-1234-1234-1234-123456789012"
+    activeEnvironment="Default"
+    name="Sample-ReadyAPI-Project"
+    resourceRoot=""
+    soapui-version="5.7.0"
+    xmlns:con="http://eviware.com/soapui/config">
+
+    <!-- ================= ENVIRONMENTS ================= -->
+    <con:environment name="Default">
+        <con:endpoints>
+            <con:endpoint>https://jsonplaceholder.typicode.com</con:endpoint>
+        </con:endpoints>
+    </con:environment>
+
+    <!-- ================= REST SERVICE ================= -->
+    <con:restService name="JSONPlaceholder Service">
+        <con:restResource name="GetPost" path="/posts/1">
+            <con:restMethod name="GetPostMethod" method="GET">
+                <con:request name="GetPostRequest" mediaType="application/json"/>
+            </con:restMethod>
+        </con:restResource>
+    </con:restService>
+
+    <!-- ================= TEST SUITE ================= -->
+    <con:testSuite name="Sample TestSuite">
+
+        <con:testCase name="Get Post TestCase">
+
+            <!-- REST REQUEST STEP -->
+            <con:testStep type="restrequest" name="Get Post Step">
+                <con:config service="JSONPlaceholder Service"
+                            resourcePath="/posts/1"
+                            methodName="GetPostMethod"/>
+
+                <!-- ASSERTION -->
+                <con:assertion type="Valid HTTP Status Codes" name="Status Code 200">
+                    <con:configuration>
+                        <codes>200</codes>
+                    </con:configuration>
+                </con:assertion>
+
+            </con:testStep>
+
+        </con:testCase>
+
+    </con:testSuite>
+
+</con:soapui-project>
