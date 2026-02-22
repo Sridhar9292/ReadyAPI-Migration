@@ -34,3 +34,4 @@ python -m pip install -r requirements.txt
 Packages:
 ========
 venv/Lib/site-packages  
+testing
